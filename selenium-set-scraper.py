@@ -14,6 +14,11 @@ from time import sleep
 # FILL: Solid, Striped, Empty
 # COUNT: 1, 2, 3
 
+#####################
+# PLEASE REPLACE USERNAME WITH YOUR USERNAME
+USERNAME = "test_user_123"
+
+
 service = Service(executable_path="chromedriver.exe")
 driver = webdriver.Chrome(service=service)
 wait = WebDriverWait(driver, timeout=10)
@@ -68,4 +73,13 @@ for i in range(len(card_ternary)-2):
                 full_cards[k].click()
                 sleep(0.1)
 
-sleep(100) # keeps window open after finishing the set game
+sleep(10) # Lets next page load
+
+
+# OPTIONAL CODE! WILL AUTOMATICALLY INPUT YOUR USERNAME TO ADD TO WEEKLY RAFFLE 
+
+# user_input = driver.find_element(By.ID, "edit-submitted-user-id")
+# user_input.clear()
+# user_input.send_keys(USERNAME + Keys.ENTER)
+
+# sleep(20) # keeps window open after finishing the set game
