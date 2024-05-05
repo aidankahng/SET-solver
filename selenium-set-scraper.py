@@ -18,10 +18,14 @@ from time import sleep
 # PLEASE REPLACE USERNAME WITH YOUR USERNAME
 USERNAME = "test_user_123"
 
-
 service = Service(executable_path="chromedriver.exe")
 driver = webdriver.Chrome(service=service)
 wait = WebDriverWait(driver, timeout=10)
+
+js_scroll = "arguments[0].scrollIntoView();"
+
+
+
 
 driver.get("https://www.setgame.com/set/puzzle")
 
@@ -46,6 +50,15 @@ for id in card_ids:
 
 # Console print allows checking if ternary values make sense
 print(card_ternary)
+
+# Scrolls to approximately where the cards are.
+# Note: If the screen cannot see all of the cards, it will be unable to click them properly
+game_board = driver.find_element(By.CLASS_NAME, "set-game-wrapper")
+
+# Call our js script to scroll the cards into view
+driver.execute_script(js_scroll, game_board)
+
+sleep(0.3)
 
 # Now we have a list of values that can be compared to each other.
 # We now need to use this list to calculate exactly which combinations of 3 will create sets
