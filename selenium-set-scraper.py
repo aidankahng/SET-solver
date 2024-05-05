@@ -24,13 +24,14 @@ wait = WebDriverWait(driver, timeout=10)
 
 js_scroll = "arguments[0].scrollIntoView();"
 
-
-
-
 driver.get("https://www.setgame.com/set/puzzle")
 
 #sleep to make sure page loads
-sleep(2)
+# sleep(2)
+wait.until(
+    EC.presence_of_element_located((By.CLASS_NAME, "set-card-td"))
+)
+
 
 full_cards = driver.find_elements(By.CLASS_NAME, "set-card-td")
 card_urls = []
@@ -86,7 +87,7 @@ for i in range(len(card_ternary)-2):
                 full_cards[k].click()
                 sleep(0.1)
 
-sleep(10) # Lets next page load
+sleep(20) # Lets next page load
 
 
 # OPTIONAL CODE! WILL AUTOMATICALLY INPUT YOUR USERNAME TO ADD TO WEEKLY RAFFLE 
